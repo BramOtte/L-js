@@ -1,3 +1,4 @@
+export {l, q, o}
 // takes a HTML-tag string,
 // an optional object with element attributes
 // and optional children elements
