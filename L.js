@@ -7,8 +7,8 @@
 // return the element.
 function l(tagOrElement="DIV", attributes, ...children){
     let element;
-    if (typeof tag === 'object')element = tag;
-    else element =  document.createElement(tag);
+    if (typeof tagOrElement === 'object')element = tagOrElement;
+    else element =  document.createElement(tagOrElement);
     if (attributes)
         attribute(element, attributes)
     if (children)
