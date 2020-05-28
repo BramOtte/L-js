@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+    <script src="../L.js"></script>
+    <script>
+        let listItems = ["first","second","third", "fourth", 'fifth', "sixth", "seventh"];
+        onload=()=>{
+            l(q("body"),null, createList(listItems) );
+        }
+        function createList(listItems){
+            let list = l("ol");
+            for (let item of listItems)l( list, null, l("li", {innerText:item}));
+            return list;
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

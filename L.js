@@ -15,19 +15,24 @@ function l(tagOrElement="DIV", attributes, ...children){
         append(element, ...children)
     return element;
 }
+l.document = window?.document;
+l.setDocument = (document)=>{l.document = document;}
+
 // applies all attributes in an object to a HTML-element
-function attribute(element=document.body, attributes={}){
+function attribute(element=l.document.body, attributes={}){
     for (let name in attributes) element.setAttribute(name, attributes[name]);
     Object.assign(element, attributes);
 }
 // appends a list of children to a HTML-element
-function append(element=document.body, ...children){
+function append(element=l.document.body, ...children){
     for (let i = 0; i < children.length; i++){
         element.appendChild(children[i]);
     }
 }
 // short for querySelectorAll
-function q(str){return document.querySelectorAll(str);}
+function Q(str){return l.document.querySelectorAll(str);}
+// short for querySelector
+function q(str){return l.document.querySelector(str);}
 
 // fills in any undefined attributes of an object with those of a standard object;
 function o(object, stdObject){
