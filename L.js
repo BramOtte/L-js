@@ -1,10 +1,13 @@
-// takes a HTML-tag string,
-// an optional object with element attributes
-// and optional children elements
-// a new HTML-element is made with the tag
-// if there is an object apply its attributes to the element
-// append each given child to the element
-// return the element.
+export {l, attribute, append, Q, q};
+/**
+ * @type {HTMLElement}
+ * @param {String | HTMLElement} tagOrElement
+ * @param {Object} attributes
+ * @param {HTMLElement[]} children
+* a new HTML-element is made with the tag
+* if there is an object apply its attributes to the element
+* append each given child to the element
+*/
 function l(tagOrElement="DIV", attributes, ...children){
     let element;
     if (typeof tagOrElement === 'object')element = tagOrElement;
@@ -16,25 +19,39 @@ function l(tagOrElement="DIV", attributes, ...children){
     return element;
 }
 l.document = window?.document;
-l.setDocument = (document)=>{l.document = document;}
+l.setDocument = document=>{l.document = document;}
 
-// applies all attributes in an object to a HTML-element
+
+/** @type {void}
+ *applies all attributes in an object to a HTML-element
+ * */ 
 function attribute(element=l.document.body, attributes={}){
     for (let name in attributes) element.setAttribute(name, attributes[name]);
     Object.assign(element, attributes);
 }
-// appends a list of children to a HTML-element
+/** @type {void}
+ *  @param {HTMLElement} element
+ *  @param {HTMLElement[]} children
+ * appends a list of children to a HTML-element 
+ * */
 function append(element=l.document.body, ...children){
     for (let i = 0; i < children.length; i++){
         element.appendChild(children[i]);
     }
 }
-// short for querySelectorAll
-function Q(str){return l.document.querySelectorAll(str);}
-// short for querySelector
-function q(str){return l.document.querySelector(str);}
+/** @type {NodeListOf<Any>}
+ *  @param {string} query
+ * short for querySelectorAll 
+ * */
+function Q(query){return l.document.querySelectorAll(query);}
 
-// fills in any undefined attributes of an object with those of a standard object;
+/** @type {Node}
+ *  @param {string} query
+ * short for querySelector 
+ * */
+function q(query){return l.document.querySelector(query);}
+
+/** fills in any undefined attributes of an object with those of a standard object; */ 
 function o(object, stdObject){
     if (!object )object = {};
     for (let i in stdObject){
